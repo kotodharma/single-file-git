@@ -11,6 +11,9 @@ Basically, it creates a separate bare repo for each file, with a unique name, an
 takes advantage of the fact that git has a command line option to override the default
 repo directory name ".git".
 
+I hate the executable name `git1`, but haven't yet thought of something I like better.
+I encourage you to change it to whatever appeals to you.
+
 This is written to run on UNIX and UNIX-like OSes. If you want to port it to
 Windows or whatever, be my guest. I've put it in the public domain, so you can do
 with it as you please. Pull requests accepted.
