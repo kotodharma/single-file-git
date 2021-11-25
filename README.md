@@ -31,7 +31,8 @@ _not_ to git directly!):
 
 You should see git output indicating successful repo creation. The file
 has also been checked in to the new repo. Needless to say, this step is only
-performed once, at the outset. The repo is named `.g1_<filename>`.
+performed once, at the outset. The repo is named `.g1_` + the filename, so
+in this case `.g1_foo.txt`.
 
 Now, you may call the present script with the filename as first argument,
 and follow with any normal git commands and options:
