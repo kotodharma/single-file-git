@@ -22,7 +22,9 @@ with it as you please. Pull requests accepted.
 To use this script, create a bare repo for the file you want to revision
 (e.g. foo.txt), by calling this script with the 'init' subcommand:
 
+```
   git1 init foo.txt
+```
 
 You should see git output indicating successful repo creation. The file
 has also been checked in to the new repo. Needless to say, this step is only
