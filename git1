@@ -1,0 +1,67 @@
+#!/bin/bash
+BANG='!'
+FILE="$1"
+if [ "$FILE" == "init" ]
+then
+    FILE="$2"
+    git init --quiet --bare ".g1_$FILE"
+    echo -e "*\n${BANG}$FILE" >> ".g1_$FILE/info/exclude"
+    git --git-dir=".g1_$FILE" --work-tree="." add "$FILE"
+    git --git-dir=".g1_$FILE" --work-tree="." commit -m "initial commit"
+    git --git-dir=".g1_$FILE" --work-tree="." status
+    echo "Repo created!"
+    exit
+fi
+if [ "$FILE" == "ls" ]
+then
+    ls -ld .g1_* 2>/dev/null | sed 's/.*g1_//'
+    exit
+fi
+if [ "$FILE" == "rm" ]
+then
+    FILE="$2"
+    rm -rf ".g1_$FILE"
+    exit
+fi
+shift
+git --git-dir=".g1_$FILE" --work-tree="." "$@"
+#
+# To use this script, create a bare repo for the file you want to revision
+# (e.g. foo.txt), by calling this script with the 'init' subcommand:
+#
+#   git1 init foo.txt
+#
+# You should see git output indicating successful repo creation. The file
+# has also been checked in to the new repo. Needless to say, this step is only
+# performed once, at the outset.
+#
+# Now, you may call the present script with the filename as first argument,
+# and follow with any normal git commands and options:
+#
+#   git1 foo.txt status
+#   git1 foo.txt commit -m "added new blah"
+#   git1 foo.txt diff
+#   git1 foo.txt log
+# etc.
+#
+# Because the bare repo is unique to the file foo.txt, you can create as many
+# of these as you like in the same directory, and commands will always have the
+# revisioned filename as first argument, to distinguish which repo for git to
+# refer to. Note that this script can only be used from inside the same
+# directory where the file its repo exist.
+#
+# To see what repos exist in the current directory:
+#
+#  git1 ls
+#
+# To remove a repo (though this does NOT remove the tracked file):
+#
+#  git1 rm foo.txt
+#
+# Protip: If you'll be doing a lot of git work on a given file at a particular
+# time, considering creating a temporary alias for "git1 foo.txt":
+#
+#  alias gg='git1 foo.txt'
+#
+# Then, commands can be simplified: gg diff, gg commit, etc.
+
