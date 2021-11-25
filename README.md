@@ -15,6 +15,8 @@ This is written to run on UNIX and UNIX-like OSes. If you want to port it to
 Windows or whatever, be my guest. I've put it in the public domain, so you can do
 with it as you please. Pull requests accepted.
 
+This software is in the public domain.
+
 ## Instructions
 
 First, copy the script into your execution path. I hate the executable name `git1`,
