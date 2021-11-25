@@ -19,7 +19,7 @@ with it as you please. Pull requests accepted.
 
 First, copy the script into your execution path. I hate the executable name `git1`,
 but haven't yet thought of something I like better. I encourage you to change it
-to whatever suits you.
+to whatever suits you. Just naming the executable file as you like will do the trick.
 
 Create a bare repo for the file you want to revision (e.g. foo.txt), by calling
 this script with the `init` subcommand (note that these are commands to the script,
