@@ -9,7 +9,7 @@ to learn it better, and, well, RCS is just too ancient. Let's be serious.
 So I finally sat down and wrote a shell script to handle this modus operandi.
 Basically, it creates a separate bare repo for each file, with a unique name, and
 takes advantage of the fact that git has a command line option to override the default
-repo directory name ".git".
+repo directory name `.git`.
 
 This is written to run on UNIX and UNIX-like OSes. If you want to port it to
 Windows or whatever, be my guest. I've put it in the public domain, so you can do
@@ -31,7 +31,7 @@ _not_ to git directly!):
 
 You should see git output indicating successful repo creation. The file
 has also been checked in to the new repo. Needless to say, this step is only
-performed once, at the outset.
+performed once, at the outset. The repo is named `.g1_<filename>`.
 
 Now, you may call the present script with the filename as first argument,
 and follow with any normal git commands and options:
@@ -47,9 +47,9 @@ etc.
 
 Because the bare repo is unique to the file foo.txt, you can create as many
 of these as you like in the same directory, and commands will always have the
-revisioned filename as first argument, to distinguish which repo for git to
-refer to. Note that this script can only be used from inside the same
-directory where the file its repo exist.
+revisioned filename as first argument, to distinguish which repo git should use.
+Note that this script can only be used from inside the same
+directory where the file and its repo exist.
 
 To see what repos exist in the current directory:
 
@@ -64,7 +64,7 @@ To remove a repo (though this does NOT remove the tracked file):
 ```
 
 Protip: If you'll be doing a lot of git work on a given file at a particular
-time, considering creating a temporary alias for "git1 foo.txt":
+time, considering creating a temporary alias for `git1 foo.txt`:
 
 ```
  alias gg='git1 foo.txt'
