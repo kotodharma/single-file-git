@@ -21,7 +21,7 @@ First, copy the script into your execution path. I hate the executable name `git
 but haven't yet thought of something I like better. I encourage you to change it
 to whatever suits you. Just naming the executable file as you like will do the trick.
 
-Create a bare repo for the file you want to revision (e.g. *foo.txt*), by calling
+Create a bare repo for the file you want to revision (e.g. **foo.txt**), by calling
 this script with the `init` subcommand (note that these are commands to the script,
 _not_ to git directly!):
 
@@ -45,7 +45,7 @@ and follow with any normal git commands and options:
 
 etc.
 
-Because the bare repo is unique to the file *foo.txt*, you can create as many
+Because the bare repo is unique to the file **foo.txt**, you can create as many
 of these as you like in the same directory, and commands will always have the
 revisioned filename as first argument, to distinguish which repo git should use.
 Note that this script can only be used from inside the same
