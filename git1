@@ -23,23 +23,35 @@ then
     rm -rf ".g1_$FILE"
     exit
 fi
+if [ "$FILE" == "help" ]
+then
+    tail -n +2 `which $0` | grep '^#' | sed 's/^#//' | less
+    exit
+fi
 shift
 git --git-dir=".g1_$FILE" --work-tree="." "$@"
+# To display this help:
 #
-# To use this script, create a bare repo for the file you want to revision
-# (e.g. foo.txt), by calling this script with the 'init' subcommand:
+#   git1 help
+#
+# CAUTION! Although the script may have been renamed, these docs use
+# the name 'git1', which is very close to 'git', but none of the commands
+# documented here call 'git' directly - they all call the script.
+#
+# TO GET STARTED: create a bare repo for the file you want to revision
+# (e.g. foo.txt), by calling this script with the 'init' subcommand. Needless
+# to say, this step is only performed once, for repo creation:
 #
 #   git1 init foo.txt
 #
 # You should see git output indicating successful repo creation. The file
-# has also been checked in to the new repo. Needless to say, this step is only
-# performed once, at the outset.
+# has also been checked in to the new repo.
 #
-# Now, you may call the present script with the filename as first argument,
+# NOW, you may call the present script with the filename as first argument,
 # and follow with any normal git commands and options:
 #
 #   git1 foo.txt status
-#   git1 foo.txt commit -m "added new blah"
+#   git1 foo.txt commit -am "added new blah"
 #   git1 foo.txt diff
 #   git1 foo.txt log
 # etc.
@@ -48,15 +60,17 @@ git --git-dir=".g1_$FILE" --work-tree="." "$@"
 # of these as you like in the same directory, and commands will always have the
 # revisioned filename as first argument, to distinguish which repo for git to
 # refer to. Note that this script can only be used from inside the same
-# directory where the file its repo exist.
+# directory where the file and its repo exist.
 #
 # To see what repos exist in the current directory:
 #
 #  git1 ls
 #
-# To remove a repo (though this does NOT remove the tracked file):
+# To remove a repo:
 #
 #  git1 rm foo.txt
+#
+# (Note: in spite of how it looks, this does NOT remove the tracked file!)
 #
 # Protip: If you'll be doing a lot of git work on a given file at a particular
 # time, considering creating a temporary alias for "git1 foo.txt":
@@ -64,4 +78,4 @@ git --git-dir=".g1_$FILE" --work-tree="." "$@"
 #  alias gg='git1 foo.txt'
 #
 # Then, commands can be simplified: gg diff, gg commit, etc.
-
+#
